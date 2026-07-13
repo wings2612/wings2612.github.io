@@ -13,6 +13,7 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://wings2612.github.io',
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [[rehypeKatex, {
@@ -39,6 +40,5 @@ export default defineConfig({
       }
     }
   },
-  site: 'https://wings2612.github.io',
   integrations: [expressiveCode(), mdx(), sitemap(), svelte(), icon()]
 });

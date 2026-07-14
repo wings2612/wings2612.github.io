@@ -5,7 +5,6 @@ import { Icon } from "astro-icon/components";
 import siteConfig from '../../content/site.json';
 import Card from "@/components/Card.astro";
 import PostCard from "../components/PostCard.astro";
-import BigAvatar from "@/components/avatar.svg";
 
 const SITE_TITLE = siteConfig.title;
 const SITE_DESCRIPTION = siteConfig.description;
@@ -17,7 +16,7 @@ const posts = (await getCollection("blog"))
 
 <RootLayout title={SITE_TITLE} description={SITE_DESCRIPTION} width="md">
     <Card id="avatar-bio">
-        <BigAvatar class="big-avatar"/>
+        <img src="/images/wwa_profile_photo.png" class="big-avatar" />
         <section id="bio">
             <h2 class="emphasize">
                 {SITE_TITLE}
@@ -32,7 +31,7 @@ const posts = (await getCollection("blog"))
                 <div id="contact">
                     <a
                         class="icon-link"
-                        href="https://github.com/haruki-nikaidou"
+                        href="https://github.com/wings2612"
                         target="_blank"
                         aria-label="GitHub"
                     >
@@ -100,6 +99,7 @@ const posts = (await getCollection("blog"))
         width: 15rem;
         height: 15rem;
         border-radius: 50%;
+        object-fit: cover;
     }
 
     #bio {

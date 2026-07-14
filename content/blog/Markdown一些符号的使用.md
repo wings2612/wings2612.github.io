@@ -3,6 +3,8 @@ title: 'Markdown一些基本语法'
 pinned: true
 heroImage: '/images/markdown_guide.webp'
 pubDate: 'Jul 14 2026'
+description: '如题'
+tags: 'markdown'
 ---
 
 # 基本的语法

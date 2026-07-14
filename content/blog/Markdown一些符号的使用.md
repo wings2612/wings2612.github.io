@@ -5,7 +5,7 @@ heroImage: '/images/markdown_guide.webp'
 pubDate: 'Jul 14 2026'
 description: '如题'
 tags: 
-  -Markdown
+  - Markdown
 ---
 
 # 基本的语法

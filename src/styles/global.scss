@@ -12,13 +12,44 @@
 }
 
 body {
-  background-image: linear-gradient(to right, #ffcdb9, #FFC0CB);
-  html.dark & {
-    background-image: linear-gradient(to right, #1b1b17, #2a2a27);
-  }
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  background: linear-gradient(
+    120deg,
+    #ffcdb9,
+    #ffc0cb,
+    #ffd6a5,
+    #bde0fe
+  );
+  background-size: 300% 300%;
+  animation: gradientMove 15s ease infinite;
+
+  html.dark & {
+    background: linear-gradient(
+      120deg,
+      #1b1b17,
+      #2a2a27,
+      #24243e,
+      #141e30
+    );
+    background-size: 300% 300%;
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /*

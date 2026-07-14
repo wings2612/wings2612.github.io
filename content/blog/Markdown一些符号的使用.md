@@ -1,7 +1,9 @@
 ---
 title: 'Markdown一些基本语法'
 pinned: true
-heroImage: 
+heroImage: '/images/markdown_guide.webp'
+pubDate: 'Jul 14 2026'
+---
 
 # 基本的语法
 ## 1.标题、强调

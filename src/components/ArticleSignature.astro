@@ -4,24 +4,58 @@ import siteConfig from "../../content/site.json";
 const { signatureLight, signatureDark } = siteConfig.brand;
 ---
 
-<footer class="article-signature" aria-label="Wings signature">
+<footer
+  class="article-signature"
+  aria-label="Wings signature"
+  data-article-signature
+>
   <img
     class="signature-logo signature-logo-light"
-    src={signatureLight}
+    data-src={signatureLight}
     alt="Wings"
     width="1774"
     height="887"
-    loading="lazy"
   />
   <img
     class="signature-logo signature-logo-dark"
-    src={signatureDark}
+    data-src={signatureDark}
     alt=""
     width="1774"
     height="887"
-    loading="lazy"
   />
 </footer>
+
+<script>
+  const signatures = document.querySelectorAll<HTMLElement>("[data-article-signature]");
+
+  const playSignature = (signature: HTMLElement) => {
+    const playId = Date.now().toString();
+
+    signature.querySelectorAll<HTMLImageElement>("img[data-src]").forEach((image) => {
+      const source = image.dataset.src;
+      if (!source) return;
+      const animationUrl = new URL(source, window.location.href);
+      animationUrl.searchParams.set("play", playId);
+      image.src = animationUrl.href;
+      image.removeAttribute("data-src");
+    });
+    signature.classList.add("is-playing");
+  };
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        playSignature(entry.target as HTMLElement);
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+
+    signatures.forEach((signature) => observer.observe(signature));
+  } else {
+    signatures.forEach(playSignature);
+  }
+</script>
 
 <style>
   .article-signature {
@@ -35,8 +69,14 @@ const { signatureLight, signatureDark } = siteConfig.brand;
   .signature-logo {
     width: min(100%, 24rem);
     height: auto;
+    aspect-ratio: 2 / 1;
     margin: 0;
     border-radius: 0.5rem;
+    opacity: 0;
+  }
+
+  .article-signature.is-playing .signature-logo {
+    opacity: 1;
   }
 
   .signature-logo-dark {

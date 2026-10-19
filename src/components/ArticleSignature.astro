@@ -1,0 +1,53 @@
+---
+import siteConfig from "../../content/site.json";
+
+const { signatureLight, signatureDark } = siteConfig.brand;
+---
+
+<footer class="article-signature" aria-label="Wings signature">
+  <img
+    class="signature-logo signature-logo-light"
+    src={signatureLight}
+    alt="Wings"
+    width="1774"
+    height="887"
+    loading="lazy"
+  />
+  <img
+    class="signature-logo signature-logo-dark"
+    src={signatureDark}
+    alt=""
+    width="1774"
+    height="887"
+    loading="lazy"
+  />
+</footer>
+
+<style>
+  .article-signature {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(2.5rem, 8vw, 5rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-muted-foreground), transparent 75%);
+  }
+
+  .signature-logo {
+    width: min(100%, 24rem);
+    height: auto;
+    margin: 0;
+    border-radius: 0.5rem;
+  }
+
+  .signature-logo-dark {
+    display: none;
+  }
+
+  :global(html.dark) .signature-logo-light {
+    display: none;
+  }
+
+  :global(html.dark) .signature-logo-dark {
+    display: block;
+  }
+</style>

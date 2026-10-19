@@ -2,6 +2,7 @@
 import type {CollectionEntry} from "astro:content";
 import RootLayout from "./RootLayout.astro";
 import Card from "@/components/Card.astro";
+import ArticleSignature from "@/components/ArticleSignature.astro";
 import "../styles/article.scss";
 
 type Props = CollectionEntry<"blog">["data"];
@@ -77,6 +78,7 @@ const {
       </div>
       <hr/>
       <slot/>
+      <ArticleSignature />
     </article>
   </Card>
 </RootLayout>

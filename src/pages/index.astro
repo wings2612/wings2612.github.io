@@ -5,6 +5,7 @@ import { Icon } from "astro-icon/components";
 import siteConfig from '../../content/site.json';
 import Card from "@/components/Card.astro";
 import PostCard from "../components/PostCard.astro";
+import HomeIntro from "../components/HomeIntro.astro";
 
 const SITE_TITLE = siteConfig.title;
 const SITE_DESCRIPTION = siteConfig.description;
@@ -15,6 +16,7 @@ const posts = (await getCollection("blog"))
 ---
 
 <RootLayout title={SITE_TITLE} description={SITE_DESCRIPTION} width="md">
+    <HomeIntro />
     <Card id="avatar-bio">
         <img src="/images/lmee_profile_photo.png" class="big-avatar" />
         <section id="bio">

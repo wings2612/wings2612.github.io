@@ -1,0 +1,163 @@
+---
+import siteConfig from "../../content/site.json";
+
+const { animatedLight, animatedDark, introDurationMs } = siteConfig.brand;
+---
+
+<div
+  id="home-intro"
+  class="home-intro"
+  data-duration={introDurationMs}
+  role="dialog"
+  aria-label="Wings 网站开场动画"
+>
+  <img
+    class="intro-logo intro-logo-light"
+    src={animatedLight}
+    alt="Wings"
+    width="1774"
+    height="887"
+    decoding="sync"
+  />
+  <img
+    class="intro-logo intro-logo-dark"
+    src={animatedDark}
+    alt=""
+    width="1774"
+    height="887"
+    decoding="sync"
+  />
+  <button class="intro-skip" type="button" aria-label="跳过开场动画">
+    跳过
+  </button>
+</div>
+
+<script is:inline>
+  (() => {
+    const intro = document.getElementById("home-intro");
+    if (!intro) return;
+
+    const storageKey = "wings-home-intro-seen";
+    let hasSeenIntro = false;
+
+    try {
+      hasSeenIntro = sessionStorage.getItem(storageKey) === "true";
+    } catch {
+      // The intro still works when browser storage is unavailable.
+    }
+
+    if (hasSeenIntro) {
+      intro.remove();
+      return;
+    }
+
+    try {
+      sessionStorage.setItem(storageKey, "true");
+    } catch {
+      // The session marker is an enhancement, not a requirement.
+    }
+
+    document.body.classList.add("intro-open");
+
+    let dismissed = false;
+    const handleKeydown = (event) => {
+      if (event.key === "Escape") dismiss();
+    };
+    const dismiss = () => {
+      if (dismissed) return;
+      dismissed = true;
+      intro.classList.add("is-leaving");
+      document.body.classList.remove("intro-open");
+      document.removeEventListener("keydown", handleKeydown);
+      window.setTimeout(() => intro.remove(), 650);
+    };
+
+    const configuredDuration = Number(intro.dataset.duration) || 5600;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const timer = window.setTimeout(dismiss, reduceMotion ? 300 : configuredDuration);
+
+    intro.querySelector(".intro-skip")?.addEventListener("click", () => {
+      window.clearTimeout(timer);
+      dismiss();
+    });
+
+    document.addEventListener("keydown", handleKeydown);
+  })();
+</script>
+
+<style>
+  :global(body.intro-open) {
+    overflow: hidden;
+  }
+
+  .home-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: #fff;
+    opacity: 1;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+
+  :global(html.dark) .home-intro {
+    background: #000;
+  }
+
+  .home-intro.is-leaving {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .intro-logo {
+    grid-area: 1 / 1;
+    width: min(94vw, 72rem);
+    height: auto;
+    border: 0;
+  }
+
+  .intro-logo-dark {
+    display: none;
+  }
+
+  :global(html.dark) .intro-logo-light {
+    display: none;
+  }
+
+  :global(html.dark) .intro-logo-dark {
+    display: block;
+  }
+
+  .intro-skip {
+    position: absolute;
+    right: max(1.25rem, env(safe-area-inset-right));
+    bottom: max(1.25rem, env(safe-area-inset-bottom));
+    padding: 0.55rem 1rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    background: color-mix(in srgb, #fff 82%, transparent);
+    color: #111318;
+    font: inherit;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+  }
+
+  :global(html.dark) .intro-skip {
+    background: color-mix(in srgb, #000 82%, transparent);
+    color: #fff;
+  }
+
+  .intro-skip:hover,
+  .intro-skip:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-intro {
+      transition-duration: 0.15s;
+    }
+  }
+</style>

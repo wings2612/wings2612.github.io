@@ -27,9 +27,6 @@ const { animatedLight, animatedDark, introDurationMs } = siteConfig.brand;
     height="887"
     decoding="sync"
   />
-  <button class="intro-skip" type="button" aria-label="跳过开场动画">
-    跳过
-  </button>
 </div>
 
 <script is:inline>
@@ -60,28 +57,17 @@ const { animatedLight, animatedDark, introDurationMs } = siteConfig.brand;
     document.body.classList.add("intro-open");
 
     let dismissed = false;
-    const handleKeydown = (event) => {
-      if (event.key === "Escape") dismiss();
-    };
     const dismiss = () => {
       if (dismissed) return;
       dismissed = true;
       intro.classList.add("is-leaving");
       document.body.classList.remove("intro-open");
-      document.removeEventListener("keydown", handleKeydown);
       window.setTimeout(() => intro.remove(), 650);
     };
 
     const configuredDuration = Number(intro.dataset.duration) || 5600;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const timer = window.setTimeout(dismiss, reduceMotion ? 300 : configuredDuration);
-
-    intro.querySelector(".intro-skip")?.addEventListener("click", () => {
-      window.clearTimeout(timer);
-      dismiss();
-    });
-
-    document.addEventListener("keydown", handleKeydown);
+    window.setTimeout(dismiss, reduceMotion ? 300 : configuredDuration);
   })();
 </script>
 
@@ -129,30 +115,6 @@ const { animatedLight, animatedDark, introDurationMs } = siteConfig.brand;
 
   :global(html.dark) .intro-logo-dark {
     display: block;
-  }
-
-  .intro-skip {
-    position: absolute;
-    right: max(1.25rem, env(safe-area-inset-right));
-    bottom: max(1.25rem, env(safe-area-inset-bottom));
-    padding: 0.55rem 1rem;
-    border: 1px solid currentColor;
-    border-radius: 999px;
-    background: color-mix(in srgb, #fff 82%, transparent);
-    color: #111318;
-    font: inherit;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-  }
-
-  :global(html.dark) .intro-skip {
-    background: color-mix(in srgb, #000 82%, transparent);
-    color: #fff;
-  }
-
-  .intro-skip:hover,
-  .intro-skip:focus-visible {
-    transform: translateY(-1px);
   }
 
   @media (prefers-reduced-motion: reduce) {

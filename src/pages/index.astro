@@ -24,7 +24,7 @@ const posts = (await getCollection("blog"))
                 {SITE_TITLE}
             </h2>
             <p>
-                Therefore will not we fear, though the earth be removed, and though the mountains be carried into the midst of the sea.
+                生活就像海洋，只有意志坚强的人，才能到达彼岸
             </p>
             <div>
                 <p>
@@ -35,6 +35,7 @@ const posts = (await getCollection("blog"))
                         class="icon-link"
                         href="https://github.com/wings2612"
                         target="_blank"
+                        rel="noopener noreferrer"
                         aria-label="GitHub"
                     >
                         <Icon
@@ -47,10 +48,25 @@ const posts = (await getCollection("blog"))
                         class="icon-link"
                         href="https://x.com/Wings2612"
                         target="_blank"
+                        rel="noopener noreferrer"
                         aria-label="X"
                     >
                         <Icon
                             name="simple-icons:x"
+                            width={32}
+                            height={32}
+                        />
+                    </a>
+                    <a
+                        class="icon-link xiaohongshu-link"
+                        href="https://xhslink.cn/o/9rqhDPaVJfA"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="小红书"
+                        title="小红书"
+                    >
+                        <Icon
+                            name="simple-icons:xiaohongshu"
                             width={32}
                             height={32}
                         />
@@ -146,6 +162,10 @@ const posts = (await getCollection("blog"))
         & > * {
             display: inline;
         }
+    }
+
+    .xiaohongshu-link {
+        color: #ff2442;
     }
 
     [data-icon="simple-icons:misskey"]{

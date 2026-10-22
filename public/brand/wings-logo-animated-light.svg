@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1774 887" role="img" aria-labelledby="title desc" style="display:block;border:0;outline:0">
   <title id="title">Wings</title>
-  <desc id="desc">The deep blue-to-purple wings wordmark writes on a light background, followed by unfolding feathers.</desc>
+  <desc id="desc">The deep blue-to-purple wings wordmark writes on a light background, followed by unfolding feathers and the words 世界是舞台，世人皆演员.</desc>
   <style>
     .main-guide, .return-guide { animation: draw-main 3.903578s linear forwards; }
     .feather-guide { animation: draw-feather .85s ease-out 4.303578s forwards; }
     .main-complete { animation: reveal-all .01s linear 3.903578s forwards; }
     .feather-complete { animation: reveal-all .01s linear 5.153578s forwards; }
     .i-dot { opacity: 0; animation: reveal-all .30s ease-out 3.923578s forwards; }
+    .tagline { opacity: 0; fill: #111318; animation: reveal-all .5s ease-out 5.153578s forwards; }
     svg > path[mask], svg > g[mask], .i-dot { fill: url(#logo-color); }
     @keyframes draw-main {
       0% { stroke-dashoffset: 3539; animation-timing-function: cubic-bezier(0.55701165,0.02023036,0.75072542,0.50014981); }
@@ -18,7 +19,7 @@
     @keyframes reveal-all { to { opacity: 1; } }
     @media (prefers-reduced-motion: reduce) {
       .main-guide, .return-guide, .feather-guide { animation: none; stroke-dashoffset: 0; }
-      .main-complete, .feather-complete, .i-dot { animation: none; opacity: 1; }
+      .main-complete, .feather-complete, .i-dot, .tagline { animation: none; opacity: 1; }
     }
   </style>
   <defs>
@@ -52,4 +53,5 @@
     <path d="M1201 402 Q1208 400 1216.5 400 Q1225 400 1236 402 Q1247 404 1259 408 Q1271 412 1290 420.5 Q1309 429 1324 433 Q1339 437 1361 437.5 Q1383 438 1392.5 436.5 Q1402 435 1409 432.5 Q1416 430 1418 430.5 L1420 431 L1413.5 435.5 Q1407 440 1395 445 Q1383 450 1371.5 452 Q1360 454 1348.5 453.5 Q1337 453 1321 448 Q1305 443 1286.5 432 Q1268 421 1253.5 414.5 Q1239 408 1227 405.5 Q1215 403 1204.5 403.5 L1194 404 L1201 402 Z" />
   </g>
   <path class="i-dot" d="M740.5 405.5 Q743 404 747 404.5 L751 405 L751.5 408.5 Q752 412 749.5 416 Q747 420 742.5 420.5 L738 421 L736.5 417.5 Q735 414 736.5 410.5 Q738 407 740.5 405.5 Z" fill="white" opacity="0" />
+  <text class="tagline" x="887" y="830" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="40" font-weight="400" letter-spacing="6">世界是舞台，世人皆演员</text>
 </svg>

@@ -2,13 +2,13 @@
     "title": "Wings Blog",
     "description": "Wings Blog",
     "favicon": "/favicon.svg",
-    "bio": "Therefore will not we fear, though the earth be removed, and though the mountains be carried into the midst of the sea.",
+    "bio": "生活就像海洋，只有意志坚强的人才能到达彼岸。",
     "copyright_name": "Amaki Eureka",
     "brand": {
         "animatedLight": "/brand/wings-logo-animated-light.svg",
         "animatedDark": "/brand/wings-logo-animated-dark.svg",
         "signatureLight": "/brand/wings-logo-v0-light.svg",
         "signatureDark": "/brand/wings-logo-v0-dark.svg",
-        "introDurationMs": 5600
+        "introDurationMs": 6500
     }
 }
